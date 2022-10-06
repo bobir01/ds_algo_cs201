@@ -47,27 +47,6 @@ public:
 
 
 
-//void deleteArray(int *arr)
-//{
-//    delete []arr;
-//}
-//
-////void func to copy elements from array[int] to another array[int] with pointers
-//void copy(int *arr1, int *arr2, int size)
-//{
-//    for (int i = 0; i < size; i++)
-//    {
-//        arr2[i] = arr1[i];
-//    }
-//
-//}
-//
-//
-//void dynamicArray(int *arr, int size) {
-//    for (int i = 0; i < size; i++) {
-//        arr[i] = i;
-//    }
-//}
 
 int main() {
     int capacity_user{0};
