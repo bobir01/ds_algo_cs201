@@ -62,6 +62,7 @@ int main() {
         if (capacity_user==100) {
             break;
         }
+
     }
     return 0;
 }
