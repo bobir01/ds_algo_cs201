@@ -199,6 +199,8 @@ class Librarian {
     int currBooksNum;
     Book *booksPtr;
 public:
+
+
     //getter and setter functions for all the private members
     string getLibrarian() const {
         return librarian;
@@ -237,7 +239,7 @@ public:
          * Default constructor
          */
         this->librarian = " ";
-        this->maxBookNums = 0;
+        this->maxBookNums = 100;
         this->currBooksNum = 0;
         this->booksPtr = nullptr;
     }
@@ -293,11 +295,12 @@ public:
         for (int i = 0; i < this->currBooksNum; ++i) {
             if (this->booksPtr[i].getName_book(Name_bookFun) == Name_bookFun) {
                 if (this->booksPtr[i].AvailabilityStatus() == true) {
-                    cout << "Book is available" << endl;
+//                    cout << "Book is available" << endl;
 
 //                    this->booksPtr[i].DispDetails(Name_bookFun);
                     cout << "Book is available" << "at index " << i << endl;
-                    break;
+                    return;
+
                 }
             }
         }
@@ -317,7 +320,8 @@ public:
             if (this->booksPtr[i].getName_book(Name_bookFun) == Name_bookFun) {
                 if (this->booksPtr[i].issueBook(CMS) == true) {
                     cout << "Book is issued" << endl;
-                    break;
+                    return;
+
                 }
             }
         }
@@ -359,9 +363,6 @@ public:
 };
 
 
-
-
-
 int main() {
 //    int capacity_user{0};
 //    cout <<  "Enter capacity of array: " ;
@@ -380,13 +381,34 @@ int main() {
 //    }
 
 
-    int col[3] = {3, 2, 4,};
+
+//
+//    Librarian obj("bob", 100);
+//    obj.addBook("CPP", "John Mack", "Edutech", 12745);
+//    obj.addBook("CP1", "John Mack", "Edutech", 12445);
+//    obj.addBook("CP2", "John Mack", "Edutech", 12342);
+//    obj.searchBook("CPP");
+//    obj.searchBook("CP1");
+//    obj.issueBook("CPP", "Bob");
+//    obj.issueBook("CPP", "Bob");
+//
 
 
-    TwoDArray arr2(3, col);
+
+
+
+
+
+
+
+
+    int col[10] = {3, 2, 4,4,7,9};
+
+
+    TwoDArray arr2(5, col);
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < col[i]; ++j) {
-            arr2.setVal(i, j, 0);
+            arr2.setVal(i, j, i);
         }
     }
     arr2.print();
