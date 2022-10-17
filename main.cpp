@@ -113,7 +113,7 @@ public:
 
     void addAt(int idx, int data) {
         if (idx < 0 || idx > size) {
-            cout << "Invalid arguments" << endl
+            cout << "Invalid arguments" << endl;
 
 
 };
