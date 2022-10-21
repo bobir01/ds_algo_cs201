@@ -114,6 +114,25 @@ public:
     }
 
 
+    bool atIndex(int index, int data){
+        if (index < 0 || size < index) return false;
+        else if(size==0) addFirst(data);
+        else {
+            Node *temp = head;
+            for (int i=0; i<=index; ++i) {
+                temp = temp->next;
+            }
+            Node * new_= new Node(data);
+            new_->next = temp->next;
+            temp->next= new_;
+
+
+            return true;
+        }
+    }
+
+
+
     void printRec(Node *curr) {
         if (curr) {
             Node * node = curr;
@@ -132,8 +151,10 @@ int main() {
 
 
     for (int i = 0; i < 10; i++) {
-        obj.insertAtLast(i + 10);}
-        cout << "Output is" << endl;
+        obj.insertAtLast(i + 10);
+    }
+    obj.atIndex(4, 1000);
+    cout << "Output is" << endl;
     obj.print();
     return 0;
 }
