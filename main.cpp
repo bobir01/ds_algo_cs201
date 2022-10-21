@@ -192,6 +192,7 @@ int main() {
         b.insertAtLast(i + 10);
     }
 
+
     merge_lists(a, b);
 
     a.traverse();
