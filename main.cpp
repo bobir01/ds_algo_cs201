@@ -146,6 +146,32 @@ public:
 
 
 
+
+
+
+
+// task1 Middle of linked list
+
+Node* middleNode(Node* head) {
+    int size=0;
+    for (Node* temp = head;  temp!= nullptr ; temp= temp->next, size++){};
+    int count = 0;
+    Node * res;
+    for (Node* temp = head;  temp!= nullptr; temp= temp->next, count++){
+        if(count==(size/2)){
+            res =temp;
+        }
+    }
+    return res;
+}
+
+
+
+
+
+
+
+
 int main() {
     LinkedList obj;
 
