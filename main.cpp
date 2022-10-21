@@ -9,6 +9,7 @@ class Node {
 public:
     int data;
     Node *next;
+
     Node(int data) {
         this->data = data;
         this->next = NULL;
@@ -41,6 +42,16 @@ public:
             tail = node;
         }
         size++;
+    }
+
+
+    void traverse() {
+        Node *temp = head;
+        while (temp != NULL) {
+            temp->print();
+            temp = temp->next;
+        }
+        cout << endl;
     }
 
 
@@ -114,17 +125,17 @@ public:
     }
 
 
-    bool atIndex(int index, int data){
+    bool atIndex(int index, int data) {
         if (index < 0 || size < index) return false;
-        else if(size==0) addFirst(data);
+        else if (size == 0) addFirst(data);
         else {
             Node *temp = head;
-            for (int i=0; i<=index; ++i) {
+            for (int i = 0; i <= index; ++i) {
                 temp = temp->next;
             }
-            Node * new_= new Node(data);
+            Node *new_ = new Node(data);
             new_->next = temp->next;
-            temp->next= new_;
+            temp->next = new_;
 
 
             return true;
@@ -132,10 +143,9 @@ public:
     }
 
 
-
     void printRec(Node *curr) {
         if (curr) {
-            Node * node = curr;
+            Node *node = curr;
             node = curr->next;
             printRec(node);
             cout << curr->data << endl;
@@ -145,42 +155,50 @@ public:
 };
 
 
-
+void merge_lists(LinkedList a , LinkedList b ){
+    a.tail->next = b.head;
+}
 
 
 
 
 // task1 Middle of linked list
 
-Node* middleNode(Node* head) {
-    int size=0;
-    for (Node* temp = head;  temp!= nullptr ; temp= temp->next, size++){};
+Node *middleNode(Node *head) {
+    int size = 0;
+    for (Node *temp = head; temp != nullptr; temp = temp->next, size++) {};
     int count = 0;
-    Node * res;
-    for (Node* temp = head;  temp!= nullptr; temp= temp->next, count++){
-        if(count==(size/2)){
-            res =temp;
+    Node *res;
+    for (Node *temp = head; temp != nullptr; temp = temp->next, count++) {
+        if (count == (size / 2)) {
+            res = temp;
         }
     }
     return res;
 }
 
 
-
-
-
-
-
-
 int main() {
-    LinkedList obj;
+    LinkedList a;
+    LinkedList b;
 
 
     for (int i = 0; i < 10; i++) {
-        obj.insertAtLast(i + 10);
+        a.insertAtLast(i + 10);
+
     }
-    obj.atIndex(4, 1000);
-    cout << "Output is" << endl;
-    obj.print();
+
+    for (int i = 0; i < 10; i++) {
+        b.insertAtLast(i + 10);
+    }
+
+    merge_lists(a, b);
+
+    a.traverse();
+
+
+//    obj.atIndex(4, 1000);
+//    cout << "Output is" << endl;
+//    obj.print();
     return 0;
 }
