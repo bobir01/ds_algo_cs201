@@ -10,8 +10,7 @@ public:
     int data;
     Node *next;
 
-    Node(int data) {
-        this->data = data;
+    Node() {
         this->next = NULL;
     }
 
@@ -32,8 +31,23 @@ public:
         size = 0;
     }
 
+
+    void copyList(Node * listhead){
+        while (listhead){
+            this->insertAtLast(listhead->data);
+            listhead = listhead->next;
+            size++;
+        }
+        tail->next = listhead;
+    }
+
+
+
+
+
     void insertAtLast(int data) {
-        Node *node = new Node(data);
+        Node *node = new Node;
+        node -> data = data;
         if (size == 0) {
             head = node;
             tail = node;
@@ -113,7 +127,8 @@ public:
     }
 
     void addFirst(int data) {
-        Node *node = new Node(data);
+        Node *node = new Node;
+        node ->data = data;
         if (size == 0) {
             head = node;
             tail = node;
@@ -133,14 +148,31 @@ public:
             for (int i = 0; i <= index; ++i) {
                 temp = temp->next;
             }
-            Node *new_ = new Node(data);
+            Node *new_ = new Node;
+            new_ -> data = data;
             new_->next = temp->next;
             temp->next = new_;
 
 
             return true;
         }
+        return false;
     }
+
+
+
+    bool isInList(int data){
+        Node * temp = head;
+        while(temp){
+            if (temp->data ==data) {
+                return true;
+            }
+            temp = temp -> next;
+        }
+        return false;
+
+    }
+
 
 
     void printRec(Node *curr) {
@@ -151,6 +183,31 @@ public:
             cout << curr->data << endl;
         }
     }
+
+
+
+    LinkedList unionlist(Node *objhead){
+        LinkedList temp;
+        int c=0;
+        while(objhead){
+            cout <<  c << " ";
+            if (isInList(objhead->data)){
+                objhead = objhead->next;
+                c++;
+                continue;
+            }
+            temp.insertAtLast(objhead->data);
+            objhead = objhead->next;
+            c++;
+        }
+        return  temp;
+
+    }
+
+
+
+
+
 
 };
 
@@ -183,23 +240,22 @@ int main() {
     LinkedList b;
 
 
-    for (int i = 0; i < 10; i++) {
-        a.insertAtLast(i + 10);
+    for (int i = 0; i < 4; i++) {
+        a.insertAtLast(i + 8);
 
     }
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 4; i++) {
         b.insertAtLast(i + 10);
     }
 
+    LinkedList c = a.unionlist(b.head);
+    c.traverse();
 
-    merge_lists(a, b);
+//    merge_lists(a, b);
+//    a.copyList(b.head);
+//    a.insertAtLast(10000);
+//    a.traverse();
 
-    a.traverse();
-
-
-//    obj.atIndex(4, 1000);
-//    cout << "Output is" << endl;
-//    obj.print();
     return 0;
 }

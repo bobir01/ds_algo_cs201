@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/ac3049069/CLionProjects/ds_algo_cs201/cmake-build-debug"
+			"value" : "/Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -155,7 +155,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake"
+			"value" : "/private/var/folders/6q/55gfg6l12wzczccg3dc8rx_00000h0/T/AppTranslocation/DC077AA1-49FE-45C3-B4C0-3FD7FC51B45C/d/CLion.app/Contents/bin/cmake/mac/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -167,7 +167,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/cpack"
+			"value" : "/private/var/folders/6q/55gfg6l12wzczccg3dc8rx_00000h0/T/AppTranslocation/DC077AA1-49FE-45C3-B4C0-3FD7FC51B45C/d/CLion.app/Contents/bin/cmake/mac/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -179,7 +179,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/bin/ctest"
+			"value" : "/private/var/folders/6q/55gfg6l12wzczccg3dc8rx_00000h0/T/AppTranslocation/DC077AA1-49FE-45C3-B4C0-3FD7FC51B45C/d/CLion.app/Contents/bin/cmake/mac/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -615,7 +615,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/ac3049069/CLionProjects/ds_algo_cs201"
+			"value" : "/Users/210030/CLionProjects/ds_algo_cs201"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -943,7 +943,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23"
+			"value" : "/private/var/folders/6q/55gfg6l12wzczccg3dc8rx_00000h0/T/AppTranslocation/DC077AA1-49FE-45C3-B4C0-3FD7FC51B45C/d/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1207,7 +1207,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/ac3049069/CLionProjects/ds_algo_cs201/cmake-build-debug"
+			"value" : "/Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug"
 		},
 		{
 			"name" : "dsAlgoLab4_IS_TOP_LEVEL",
@@ -1231,7 +1231,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/ac3049069/CLionProjects/ds_algo_cs201"
+			"value" : "/Users/210030/CLionProjects/ds_algo_cs201"
 		}
 	],
 	"kind" : "cache",

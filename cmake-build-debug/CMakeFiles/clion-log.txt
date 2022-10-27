@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/ac3049069/CLionProjects/ds_algo_cs201 -B /Users/ac3049069/CLionProjects/ds_algo_cs201/cmake-build-debug
+/private/var/folders/6q/55gfg6l12wzczccg3dc8rx_00000h0/T/AppTranslocation/DC077AA1-49FE-45C3-B4C0-3FD7FC51B45C/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/210030/CLionProjects/ds_algo_cs201 -B /Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug
 -- The C compiler identification is AppleClang 13.0.0.13000029
 -- The CXX compiler identification is AppleClang 13.0.0.13000029
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/ac3049069/CLionProjects/ds_algo_cs201/cmake-build-debug
+-- Build files have been written to: /Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug
