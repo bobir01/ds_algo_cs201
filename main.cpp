@@ -186,6 +186,25 @@ public:
 
 
 
+
+
+    LinkedList insection(Node *objhead){
+        LinkedList temp;
+        while(objhead){
+            if (!isInList(objhead->data)){
+                objhead = objhead->next;
+                continue;
+            }
+            temp.insertAtLast(objhead->data);
+            objhead = objhead->next;
+        }
+        return  temp;
+
+    }
+
+
+
+
     LinkedList unionlist(Node *objhead){
         LinkedList temp;
         int c=0;
@@ -249,8 +268,10 @@ int main() {
         b.insertAtLast(i + 10);
     }
 
-    LinkedList c = a.unionlist(b.head);
-    c.traverse();
+//    LinkedList c = a.unionlist(b.head);
+    LinkedList d = a.insection(b.head);
+    d.traverse();
+//    c.traverse();
 
 //    merge_lists(a, b);
 //    a.copyList(b.head);
