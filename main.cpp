@@ -207,21 +207,31 @@ public:
 
     LinkedList unionlist(Node *objhead){
         LinkedList temp;
-        int c=0;
-        while(objhead){
-            cout <<  c << " ";
-            if (isInList(objhead->data)){
-                objhead = objhead->next;
-                c++;
-                continue;
-            }
-            temp.insertAtLast(objhead->data);
-            objhead = objhead->next;
-            c++;
-        }
-        return  temp;
 
-    }
+        Node * node= head;
+        while(node){
+            if (temp.isInList(node->data)){
+                node= node->next;
+                continue;
+            }else{
+                temp.insertAtLast(node->data);
+                node = node->next;
+            }
+        }
+
+        Node * objtemp = objhead;
+            while(objtemp){
+                if (temp.isInList(objtemp->data)){
+                    objtemp = objtemp->next;
+                    continue;
+                } else {
+                    temp.insertAtLast(objtemp->data);
+                    objtemp = objtemp->next;
+                }
+            }
+            return  temp;
+
+        }
 
 
 
@@ -260,17 +270,19 @@ int main() {
 
 
     for (int i = 0; i < 4; i++) {
-        a.insertAtLast(i + 8);
+        a.insertAtLast(i + 8);  // 8 9 10 11 11
 
     }
+    a.insertAtLast(11);
 
     for (int i = 0; i < 4; i++) {
-        b.insertAtLast(i + 10);
+        b.insertAtLast(i + 10);  // 11 12 13 14
     }
 
-//    LinkedList c = a.unionlist(b.head);
-    LinkedList d = a.insection(b.head);
-    d.traverse();
+    LinkedList c = a.unionlist(b.head);
+//    LinkedList d = a.insection(b.head);
+    c.traverse();
+//    d.traverse();
 //    c.traverse();
 
 //    merge_lists(a, b);

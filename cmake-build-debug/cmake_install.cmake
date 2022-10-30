@@ -1,4 +1,4 @@
-# Install script for directory: /Users/210030/CLionProjects/ds_algo_cs201
+# Install script for directory: /Users/ac3049069/CLionProjects/ds_algo_cs201
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ac3049069/CLionProjects/ds_algo_cs201/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
