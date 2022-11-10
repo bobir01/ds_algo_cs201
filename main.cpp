@@ -1,294 +1,78 @@
 
-#include <ostream>
 #include <iostream>
 
 using namespace std;
 
 
-class Node {
+template<class Type> class QueueType{
 public:
-    int data;
-    Node *next;
+    bool isEmptyQueue(){
+        return count==0;
+    };
+    bool isFullQueue(){
+        return count==maxQueueSize;
+    };
+    void initializeQueue(){
 
-    Node() {
-        this->next = NULL;
-    }
+    };
+    Type front(){
 
-    void print() {
-        cout << data << " ";
-    }
+    };
+    Type back(){};
+    void addQueue(Type& queueElement){
+        if(!isFullQueue()){
+            queueRear = (queueRear + 1) % maxQueueSize;
+            count++;
+            list[queueRear]  = queueElement;
+        }else{
+            cout << "Cannot add to a full queue." << "\n";
+            throw runtime_error("queue is full");
+        }
+    };
+    void deleteQueue(){
+        if(!isFullQueue()){
+            count--;
+            queueFront =(queueFront+1) % maxQueueSize;
+        }else{
+            cout << "Cannot remove from an empty queue" << '\n';
+        }
+    };
+
+    QueueType(int queueSize = 100){
+        if(queueSize<=0){
+            cout << "Size can't be negative \n";
+            throw (runtime_error("size is negative"));
+        }
+        list = new Type[queueSize];
+        maxQueueSize = queueSize;
+
+        queueFront =0;
+        queueRear = maxQueueSize-1;
+        count=0;
+
+
+
+
+
+
+    }; // Function with default parameters
+    QueueType(const QueueType&amp; otherQueue){ // To create a Queue object that copies another queue
+    };
+
+    ~QueueType(){
+        delete[]list;
+    };
+private:
+    int maxQueueSize;
+    int count;
+    int queueFront;
+    int queueRear;
+    Type *list;
 };
 
-class LinkedList {
-public:
-    Node *head;
-    Node *tail;
-    int size;
-
-    LinkedList() {
-        head = NULL;
-        tail = NULL;
-        size = 0;
-    }
-
-
-    void copyList(Node * listhead){
-        while (listhead){
-            this->insertAtLast(listhead->data);
-            listhead = listhead->next;
-            size++;
-        }
-        tail->next = listhead;
-    }
-
-
-
-
-
-    void insertAtLast(int data) {
-        Node *node = new Node;
-        node -> data = data;
-        if (size == 0) {
-            head = node;
-            tail = node;
-        } else {
-            tail->next = node;
-            tail = node;
-        }
-        size++;
-    }
-
-
-    void traverse() {
-        Node *temp = head;
-        while (temp != NULL) {
-            temp->print();
-            temp = temp->next;
-        }
-        cout << endl;
-    }
-
-
-    void print() {
-//        Node *temp = head;
-//        while (temp != NULL) {
-//            temp->print();
-//            temp = temp->next;
-//        }
-//        cout << endl;
-        printRec(head);
-    }
-
-    void removeFirst() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-        } else if (size == 1) {
-            head = NULL;
-            tail = NULL;
-            size = 0;
-        } else {
-            head = head->next;
-            size--;
-        }
-    }
-
-    int getFirst() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-            return -1;
-        } else {
-            return head->data;
-        }
-    }
-
-    int getLast() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-            return -1;
-        } else {
-            return tail->data;
-        }
-    }
-
-    int getAt(int idx) {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-            return -1;
-        } else if (idx < 0 || idx >= size) {
-            cout << "Invalid arguments" << endl;
-            return -1;
-        } else {
-            Node *temp = head;
-            for (int i = 0; i < idx; i++) {
-                temp = temp->next;
-            }
-            return temp->data;
-        }
-    }
-
-    void addFirst(int data) {
-        Node *node = new Node;
-        node ->data = data;
-        if (size == 0) {
-            head = node;
-            tail = node;
-        } else {
-            node->next = head;
-            head = node;
-        }
-        size++;
-    }
-
-
-    bool atIndex(int index, int data) {
-        if (index < 0 || size < index) return false;
-        else if (size == 0) addFirst(data);
-        else {
-            Node *temp = head;
-            for (int i = 0; i <= index; ++i) {
-                temp = temp->next;
-            }
-            Node *new_ = new Node;
-            new_ -> data = data;
-            new_->next = temp->next;
-            temp->next = new_;
-
-
-            return true;
-        }
-        return false;
-    }
-
-
-
-    bool isInList(int data){
-        Node * temp = head;
-        while(temp){
-            if (temp->data ==data) {
-                return true;
-            }
-            temp = temp -> next;
-        }
-        return false;
-
-    }
-
-
-
-    void printRec(Node *curr) {
-        if (curr) {
-            Node *node = curr;
-            node = curr->next;
-            printRec(node);
-            cout << curr->data << endl;
-        }
-    }
-
-
-
-
-
-    LinkedList insection(Node *objhead){
-        LinkedList temp;
-        while(objhead){
-            if (!isInList(objhead->data)){
-                objhead = objhead->next;
-                continue;
-            }
-            temp.insertAtLast(objhead->data);
-            objhead = objhead->next;
-        }
-        return  temp;
-
-    }
-
-
-
-
-    LinkedList unionlist(Node *objhead){
-        LinkedList temp;
-
-        Node * node= head;
-        while(node){
-            if (temp.isInList(node->data)){
-                node= node->next;
-                continue;
-            }else{
-                temp.insertAtLast(node->data);
-                node = node->next;
-            }
-        }
-
-        Node * objtemp = objhead;
-            while(objtemp){
-                if (temp.isInList(objtemp->data)){
-                    objtemp = objtemp->next;
-                    continue;
-                } else {
-                    temp.insertAtLast(objtemp->data);
-                    objtemp = objtemp->next;
-                }
-            }
-            return  temp;
-
-        }
-
-
-
-
-
-
-};
-
-
-void merge_lists(LinkedList a , LinkedList b ){
-    a.tail->next = b.head;
-}
-
-
-
-
-// task1 Middle of linked list
-
-Node *middleNode(Node *head) {
-    int size = 0;
-    for (Node *temp = head; temp != nullptr; temp = temp->next, size++) {};
-    int count = 0;
-    Node *res;
-    for (Node *temp = head; temp != nullptr; temp = temp->next, count++) {
-        if (count == (size / 2)) {
-            res = temp;
-        }
-    }
-    return res;
-}
 
 
 int main() {
-    LinkedList a;
-    LinkedList b;
-
-
-    for (int i = 0; i < 4; i++) {
-        a.insertAtLast(i + 8);  // 8 9 10 11 11
-
-    }
-    a.insertAtLast(11);
-
-    for (int i = 0; i < 4; i++) {
-        b.insertAtLast(i + 10);  // 11 12 13 14
-    }
-
-    LinkedList c = a.unionlist(b.head);
-//    LinkedList d = a.insection(b.head);
-    c.traverse();
-//    d.traverse();
-//    c.traverse();
-
-//    merge_lists(a, b);
-//    a.copyList(b.head);
-//    a.insertAtLast(10000);
-//    a.traverse();
 
     return 0;
 }
