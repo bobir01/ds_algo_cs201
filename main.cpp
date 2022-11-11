@@ -17,9 +17,10 @@ public:
     };
     Type front(){
 
+
     };
     Type back(){};
-    void addQueue(Type& queueElement){
+    void addQueue(Type queueElement){
         if(!isFullQueue()){
             queueRear = (queueRear + 1) % maxQueueSize;
             count++;
@@ -50,18 +51,21 @@ public:
         queueRear = maxQueueSize-1;
         count=0;
 
-
-
-
-
-
     }; // Function with default parameters
-    QueueType(const QueueType&amp; otherQueue){ // To create a Queue object that copies another queue
+    QueueType(QueueType<Type>& otherQueue){ // To create a Queue object that copies another queue
     };
 
     ~QueueType(){
         delete[]list;
     };
+
+    void print(){
+        for (int i = queueFront; i < maxQueueSize; i++) {
+            if(list[i]!=0)
+            cout << list[i] << "\n";
+        }
+        
+    }
 private:
     int maxQueueSize;
     int count;
@@ -73,6 +77,16 @@ private:
 
 
 int main() {
+    
+    QueueType<int> q;
+    q.initializeQueue();
+    q.addQueue(2);
+    q.addQueue(3);
+    q.addQueue(73);
+    q.print();
+
+
+
 
     return 0;
 }
