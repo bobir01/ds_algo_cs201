@@ -12,14 +12,28 @@ public:
     bool isFullQueue(){
         return count==maxQueueSize;
     };
-    void initializeQueue(){
-
-    };
+    void initializeQueue(int maxQueueSize){
+            queueFront = 0;
+            queueRear = maxQueueSize - 1;
+            count = 0;
+        };
     Type front(){
-
+        if (!isEmptyQueue())
+        {
+            return list[queueFront];
+        }throw runtime_error("is empty");
+        
 
     };
-    Type back(){};
+    Type back(){
+        if (!isFullQueue())
+        {
+            return list[queueRear];
+        }
+        throw runtime_error("is full");
+        
+    };
+
     void addQueue(Type queueElement){
         if(!isFullQueue()){
             queueRear = (queueRear + 1) % maxQueueSize;
@@ -53,6 +67,17 @@ public:
 
     }; // Function with default parameters
     QueueType(QueueType<Type>& otherQueue){ // To create a Queue object that copies another queue
+        initializeQueue(otherQueue.maxQueueSize);
+        maxQueueSize = otherQueue.maxQueueSize;
+        if(!isEmptyQueue()){
+           Type temp = otherQueue.queueFront;
+           while (temp != otherQueue.queueRear)
+           {
+            addQueue(otherQueue.list[temp]);
+            temp = (temp+1) % otherQueue.maxQueueSize;
+           }
+        }
+        
     };
 
     ~QueueType(){
@@ -60,9 +85,9 @@ public:
     };
 
     void print(){
-        for (int i = queueFront; i < maxQueueSize; i++) {
+        for (Type i = queueFront; i < maxQueueSize; i++) {
             if(list[i]!=0)
-            cout << list[i] << "\n";
+            cout << list[i] << " ";
         }
         
     }
@@ -78,14 +103,24 @@ private:
 
 int main() {
     
-    // QueueType<int> q;
-    // q.initializeQueue();
-    // q.addQueue(2);
-    // q.addQueue(3);
-    // q.addQueue(73);
-    // q.print();
+    QueueType<int> q;
+    q.initializeQueue(100);
+    q.addQueue(2);
+    q.addQueue(2);
+    q.addQueue(8);
 
-    cout << "Hello world";
+    q.addQueue(3);
+    q.addQueue(73);
+    q.deleteQueue();
+    q.print();
+     
+
+    QueueType<int>q2(q);
+
+    q2.print();
+
+
+
 
 
 
