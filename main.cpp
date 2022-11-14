@@ -78,13 +78,14 @@ private:
 
 int main() {
     
-    QueueType<int> q;
-    q.initializeQueue();
-    q.addQueue(2);
-    q.addQueue(3);
-    q.addQueue(73);
-    q.print();
+    // QueueType<int> q;
+    // q.initializeQueue();
+    // q.addQueue(2);
+    // q.addQueue(3);
+    // q.addQueue(73);
+    // q.print();
 
+    cout << "Hello world";
 
 
 
