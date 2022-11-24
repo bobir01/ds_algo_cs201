@@ -14,6 +14,14 @@ public:
         stack_top = -1;
     }
 
+    Stacks(string name){
+        source = new type[max_size];
+        stack_top = -1;
+        for (auto i: name) {
+            push(i);
+        }
+    }
+
 
     bool isFull(){
         return stack_top == max_size;
@@ -26,6 +34,12 @@ public:
 
     void push(type newElement){
         if (!isFull()){
+            if (isEmpty()){
+                stack_top++;
+                source[stack_top] = newElement;
+                stack_top++;
+                return;
+            }
             source[stack_top] = newElement;
             stack_top++;
         } else{
@@ -60,6 +74,24 @@ public:
         }
         cout << endl;
     }
+    void reverse() {
+        int temp = stack_top-1;
+        for (int i = 0; i < count()-1; ++i) {
+            cout << source[temp] << ' ';
+            temp--;
+        }
+        cout << "\n";
+
+    }
+    void reverse(bool string){
+        int temp = stack_top-1;
+        for (int i = 0; i < count()-1; ++i) {
+            cout << source[temp];
+            temp--;
+        }
+        cout << "\n";
+
+    }
 
 };
 
@@ -75,12 +107,16 @@ int main() {
     list.push(800);
     list.push(900);
 
-    cout << list.pop() << endl;
-    cout << list.pop() << endl;
-    cout << list.pop() << endl;
-    cout << list.pop() << endl;
+//    cout << list.pop() << endl;
+//    cout << list.pop() << endl;
+//    cout << list.pop() << endl;
+//    cout << list.pop() << endl;
 
     list.print();
+    cout << "reversed stack print\n";
+    list.reverse();
+    Stacks<char> userStack("Bobir");
+    userStack.reverse(true);
 
 
 
