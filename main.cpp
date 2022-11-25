@@ -9,18 +9,18 @@ private:
     int max_size=100;
 
 public:
-    explicit Stacks(type max_size=100){
+    explicit Stacks(int max_size=100){
         source = new type[max_size];
         stack_top = -1;
     }
 
-    Stacks(string name){
-        source = new type[max_size];
-        stack_top = -1;
-        for (auto i: name) {
-            push(i);
-        }
-    }
+//    Stacks(string name){
+//        source = new type[max_size];
+//        stack_top = -1;
+//        for (auto i: name) {
+//            push(i);
+//        }
+//    }
 
 
     bool isFull(){
@@ -381,6 +381,35 @@ private:
 };
 
 
+
+double postfix_eval(string exp){
+    auto list = new Stacks<double>(exp.length());
+    string temp = "";
+
+    for (auto i: exp) {
+        if( i == '-'){
+            auto a     =  list->pop();
+            auto b = list->pop();
+            list->push(a-b);
+        } else if(i=='+'){
+            auto a     =  list->pop();
+            auto b = list->pop();
+            list->push(a+b);
+        }else if(i=='*'){
+            auto a     =  list->pop();
+            auto b = list->pop();
+            list->push(a*b);
+        }else if(i=='/'){
+            auto a     =  list->pop();
+            auto b = list->pop();
+            list->push(a/b);
+        }
+        temp+=i;
+
+
+    }
+
+}
 
 
 
