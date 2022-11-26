@@ -371,7 +371,7 @@ private:
 
 
     bool isPalindrome(){
-        for (int i = 0; i < (sizeOf())/2; ++i) {
+        for (int i = 0; i < sizeOf(); ++i) {
 //            cout << list->getAt(i) << ' ';
             if (list->getAt(i) != pop()) return false;
         }
@@ -439,10 +439,10 @@ int main() {
 //    userStack.reverse(true);
 
 
-    LinkedListStack<char> plind("kayak");
+    LinkedListStack<char> plind("amma");
 //    plind.print();
 //cout << plind.isPalindrome();
-    plind.isPalindrome() ? (cout <<  "false" ) : (cout << "true");
+    plind.isPalindrome() ? (cout <<  "true" ) : (cout << "false");
 
 
 
