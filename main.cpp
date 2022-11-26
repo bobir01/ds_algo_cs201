@@ -18,13 +18,6 @@ public:
         max_size = max_size;
     }
 
-//    Stacks(string name){
-//        source = new type[max_size];
-//        stack_top = -1;
-//        for (auto i: name) {
-//            push(i);
-//        }
-//    }
 
 
     bool isFull() {
