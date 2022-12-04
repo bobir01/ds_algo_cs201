@@ -1,492 +1,270 @@
 #include <iostream>
-#include <cctype>
-#include <vector>
+#include <string>
+#include "WifeNode.h"
+#include "ChildNode.h"
+#include "HusbandNode.h"
+
 
 using namespace std;
 
-template<class type>
-class Stacks {
-private:
-    type *source;
-    int stack_top{-1};
-    int max_size{100};
+static int counter = 1;
 
+class familyTree {
 public:
-    explicit Stacks(int max_size = 100) {
-        source = new type[max_size];
-        stack_top = -1;
-        max_size = max_size;
+    HusbandNode *HusbandHead = NULL;
+    WifeNode *WifeHead = NULL;
+    ChildNode *ChildHead = NULL;
+
+    familyTree() {
+        HusbandHead = NULL;
+        WifeHead = NULL;
+        ChildHead = NULL;
     }
 
-
-
-    bool isFull() {
-        return stack_top == max_size;
-    }
-
-    bool isEmpty() {
-        return stack_top == -1;
-    }
-
-
-    void push(type newElement) {
-        if (!isFull()) {
-            if (isEmpty()) {
-                stack_top++;
-                source[stack_top] = newElement;
-                stack_top++;
-                return;
+    void addHusband(int age, string name) {
+        HusbandNode *newHusband = new HusbandNode(age, name);
+        newHusband->isMarried = true;
+        if (HusbandHead == NULL) { // if the list of husbands is empty
+            HusbandHead = newHusband;
+        } else {
+            HusbandNode *temp = HusbandHead;
+            while (temp->next != NULL) { // go to the end of the list
+                temp = temp->next;
             }
-            source[stack_top] = newElement;
-            stack_top++;
+            temp->next = newHusband;
+        }
+    }
+
+    void addWife(int age, string name) {
+        WifeNode *newWife = new WifeNode(age, name);
+        if (WifeHead == NULL) { // if the list of wives is empty
+            WifeHead = newWife;
+            HusbandNode *temp = HusbandHead;
+            while (temp->next != NULL) { // go to the end of the list
+                temp = temp->next;
+            }
+            temp->down = newWife;  // link the last husband to the new wife
+            newWife->up = temp;   // link the new wife to the last husband
         } else {
-            throw runtime_error("Stack is full");
-        }
-    }
+            WifeNode *temp = WifeHead;
+            while (temp->next != NULL) { // go to the end of the list
+                temp = temp->next;
+            }
+            temp->next = newWife;
+            HusbandNode *temp2 = HusbandHead;
 
-    type pop() {
-        if (!isEmpty()) {
-            stack_top--;
-            return source[stack_top];
-        }
-        throw runtime_error("stack is empty");
-    }
-
-    type top_stack() {
-        if (!isEmpty()) {
-            return source[stack_top-1];
+            while (temp2->next != NULL) { // go to the end of the list
+                temp2 = temp2->next;
+            }
+            temp2->down = newWife;  // link the last husband to the new wife
+            newWife->up = temp2;   // link the new wife to the last husband
 
         }
-        throw runtime_error("stack is empty");
     }
 
-
-    int count() {
-        return stack_top;
-    }
-
-    void print() {
-        for (int i = 0; i < count(); ++i) {
-            cout << source[i] << " ";
-        }
-        cout << endl;
-    }
-
-    void reverse() {
-        int temp = stack_top;
-        for (int i = 0; i < count(); ++i) {
-            cout << source[temp] << ' ';
-            temp--;
-        }
-        cout << "\n";
-
-    }
-
-    void reverse(bool string) {
-        int temp = stack_top;
-        for (int i = 0; i < count(); ++i) {
-            cout << source[temp];
-            temp--;
-        }
-        cout << "\n";
-
-    }
-
-
-    type sum() {
-        int res = 0;
-        for (int i = 0; i < count(); i++) {
-            res += source[i];
-        }
-        return res;
-    }
-};
-
-
-template<class type>
-class Node {
-public:
-    type data;
-    Node *next;
-
-    Node() {
-        this->next = NULL;
-    }
-
-    Node(type data) {
-        this->data = data;
-        this->next = NULL;
-    }
-
-    void print() {
-        cout << data << " ";
-    }
-};
-
-
-template<class type>
-class LinkedList {
-public:
-    Node<type> *head;
-    Node<type> *tail;
-    int size;
-
-    LinkedList() {
-        head = NULL;
-        tail = NULL;
-        size = 0;
-    }
-
-    void insertAtLast(int data) {
-        auto *node = new Node<type>;
-        node->data = data;
-        if (size == 0) {
-            head = node;
-            tail = node;
+    void addChild(int age, string name) {
+        ChildNode *newChild = new ChildNode(age, name);
+        if (ChildHead == NULL) { // if the list of children is empty
+            ChildHead = newChild;
+            WifeNode *temp = WifeHead;
+            while (temp->next != NULL) { // go to the end of the list
+                temp = temp->next;
+            }
+            temp->down = newChild;  // link the last wife to the new child
+            newChild->up = temp;   // link the new child to the last wife
         } else {
-            tail->next = node;
-            tail = node;
+            ChildNode *temp = ChildHead;
+            while (temp->next != NULL) { // go to the end of the list
+                temp = temp->next;
+            }
+            temp->next = newChild;
+            WifeNode *temp2 = WifeHead;
+            while (temp2->next != NULL) { // go to the end of the list
+                temp2 = temp2->next;
+            }
+            temp2->down = newChild;  // link the last wife to the new child
+            newChild->up = temp2;   // link the new child to the last wife
         }
-        size++;
     }
 
-    void traverse() {
-        Node<type> *temp = head;
+
+    void printHusband() {
+        HusbandNode *temp = HusbandHead;
+        int i = 1;
         while (temp != NULL) {
-            temp->print();
+            cout << i << ". " << temp->name << " " << temp->age << endl;
             temp = temp->next;
         }
-        cout << endl;
     }
 
-    void print() {
-        printRec(head);
-    }
-
-    void removeFirst() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-        } else if (size == 1) {
-            head = NULL;
-            tail = NULL;
-            size = 0;
-        } else {
-            head = head->next;
-            size--;
+    void printWife() {
+        WifeNode *temp = WifeHead;
+        int i = 1;
+        while (temp != NULL) {
+            cout << i << ". " << temp->name << " " << temp->age << endl;
+            temp = temp->next;
         }
     }
 
-    void removeLast() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-        } else if (size == 1) {
-            head = NULL;
-            tail = NULL;
-            size = 0;
-        } else {
-            Node<type> *temp = head;
-            while (temp->next != tail) {
-                temp = temp->next;
+    void printChild() {
+        ChildNode *temp = ChildHead;
+        int i = 1;
+        while (temp != NULL) {
+            cout << i << ". " << temp->name << " " << temp->age << endl;
+            temp = temp->next;
+        }
+    }
+
+
+    void printFamily() {
+        HusbandNode *husbandtemp = HusbandHead;
+        WifeNode *wifetemp = WifeHead;
+        ChildNode *childtemp = ChildHead;
+        counter = 1;
+        while (husbandtemp != NULL) {
+            cout << counter << ". " << husbandtemp->name << " " << husbandtemp->age << ">>>";
+            if (husbandtemp->down != NULL) {
+                cout << husbandtemp->down->name << " " << husbandtemp->down->age << ">>>";
+                if (husbandtemp->down->down != NULL) {
+                    cout << husbandtemp->down->down->name << " " << husbandtemp->down->down->age << endl;
+                } else {
+                    cout << endl;
+                }
+            } else {
+                cout << endl;
             }
-            temp->next = NULL;
-            tail = temp;
-            size--;
+            husbandtemp = husbandtemp->next;
+            counter++;
+            cout << endl;
         }
     }
+    void manageFamily() {
+        int choice = 0;
 
-    type getFirst() {
-        if (size == 0) {
-            cout << "List is empty" << endl;
-            return -1;
-        } else {
-            return head->data;
-        }
-    }
+        while (choice != 4) {
+            cout << "1. Add a husband" << endl;
+            cout << "2. Add a wife" << endl;
+            cout << "3. Add a child" << endl;
+            cout << "4. Exit" << endl;
+            cin >> choice;
+            if (choice == 1) {
+                int age;
+                string name;
 
-    type getLast() {
-        if (size == 0) {
-            throw runtime_error("empty");
-        }
-        return tail->data;
 
-    }
+                cout << "Enter the name of the husband: ";
+                cin >> name;
+                cout << "Enter the age of the husband: ";
+                cin >> age;
 
-    type getAt(int idx) {
-        if (size == 0) {
-            throw runtime_error("empty");
-        } else if (idx < 0 || idx >= size) {
-            throw runtime_error("invalid index");
-        } else {
-            Node<type> *temp = head;
-            for (int i = 0; i < idx; i++) {
-                temp = temp->next;
+
+                addHusband(age, name);
+            } else if (choice == 2) {
+                int age;
+                string name;
+                cout << "Enter the name of the wife: ";
+                cin >> name;
+                cout << "Enter the age of the wife: ";
+                cin >> age;
+                addWife(age, name);
+            } else if (choice == 3) {
+                int age;
+                string name;
+                cout << "Enter the name of the child: ";
+                cin >> name;
+                cout << "Enter the age of the child: ";
+                cin >> age;
+                addChild(age, name);
+            } else if (choice == 4) {
+                cout << "Exiting..." << endl;
+            } else {
+                cout << "Invalid input. Try again." << endl;
             }
-            return temp->data;
         }
     }
 
-    void addFirst(int data) {
-        auto *node = new Node<type>;
-        node->data = data;
-        if (size == 0) {
-            head = node;
-            tail = node;
-        } else {
-            node->next = head;
-            head = node;
-        }
-        size++;
-    }
-
-    bool atIndex(int index, int data) {
-        if (index < 0 || size < index) return false;
-        else if (size == 0) addFirst(data);
-        else {
-            auto *temp = head;
-            for (int i = 0; i <= index; ++i) {
-                temp = temp->next;
-            }
-            auto *new_ = new Node<type>;
-            new_->data = data;
-            new_->next = temp->next;
-            temp->next = new_;
-
-
-            return true;
-        }
-        return false;
-    }
-
-    bool isInList(int data) {
-        auto *temp = head;
-        while (temp) {
-            if (temp->data == data) {
-                return true;
+    void findFamilyViaChildName(string name) {
+        ChildNode *temp = ChildHead;
+        while (temp != NULL) {
+            if (temp->name == name) {
+                cout << temp->up->up->name << " " << temp->up->up->age << ">>>";
+                cout << temp->up->name << " " << temp->up->age << ">>>";
+                cout << temp->name << " " << temp->age << endl;
             }
             temp = temp->next;
         }
-        return false;
-
     }
 
-    void printRec(Node<type> *curr) {
-        if (curr) {
-            auto *node = curr;
-            node = curr->next;
-            printRec(node);
-            cout << curr->data << endl;
-        }
-    }
-
-
-    void remove_index(int indx) {
-        if (indx < 0 || indx >= size) {
-            throw runtime_error("invalid index");
-        } else if (indx == 0) {
-            removeFirst();
-        } else if (indx == size - 1) {
-            removeLast();
-        } else {
-            Node<type> *temp = head;
-            for (int i = 0; i < indx - 1; i++) {
-                temp = temp->next;
+    void findFamilyViaWifeName(string name) {
+        WifeNode *temp = WifeHead;
+        while (temp != NULL) {
+            if (temp->name == name) {
+                cout << temp->up->name << " " << temp->up->age << ">>>";
+                cout << temp->name << " " << temp->age << ">>>";
+                if (temp->down != NULL) {
+                    cout << temp->down->name << " " << temp->down->age << endl;
+                } else {
+                    cout << endl;
+                }
             }
-            Node<type> *a = temp->next;
-            temp->next = a->next;
-            delete a;
-            size--;
+            temp = temp->next;
         }
     }
 
-    void insertLast(type data) {
-        auto *node = new Node<type>;
-        node->data = data;
-        if (size == 0) {
-            head = node;
-            tail = node;
-        } else {
-            tail->next = node;
-            tail = node;
+    void findFamilyViaHusbandName(string name) {
+        HusbandNode *temp = HusbandHead;
+        while (temp != NULL) {
+            if (temp->name == name) {
+                cout << temp->name << " " << temp->age << ">>>";
+                if (temp->down != NULL) {
+                    cout << temp->down->name << " " << temp->down->age << ">>>";
+                    if (temp->down->down != NULL) {
+                        cout << temp->down->down->name << " " << temp->down->down->age << endl;
+                    } else {
+                        cout << endl;
+                    }
+                } else {
+                    cout << endl;
+                }
+            }
+            temp = temp->next;
         }
-        size++;
     }
+
 
 };
-
-
-template<class type>
-class LinkedListStack {
-private:
-    LinkedList<type> *list;
-    int size{0};
-    int top;
-public:
-    LinkedListStack() {
-        list = new LinkedList<type>;
-        top = -1;
-    }
-
-    LinkedListStack(string s) {
-        list = new LinkedList<type>;
-        top = -1;
-        for (char &i: s) {
-            push(i);
-        }
-    }
-
-    bool isEmpty() {
-        return size == 0;
-    }
-
-    void push(type data) {
-        if (isEmpty()) {
-            list->addFirst(data);
-            top++;
-            size++;
-            return;
-        }
-
-        list->insertAtLast(data);
-        top++;
-        size++;
-    }
-
-
-    type pop() {
-        if (!isEmpty()) {
-            type temp = list->getAt(top);
-            list->removeLast();
-            top--;
-            size--;
-            return temp;
-        }
-        throw runtime_error("stack is empty");
-    }
-
-    type getTop() {
-        if (!isEmpty()) {
-            return list->getAt(top);
-        }
-        throw runtime_error("stack is empty");
-    }
-
-    void print() {
-        list->print();
-    }
-
-    int sizeOf() {
-        return size;
-    }
-
-
-    bool isPalindrome() {
-        for (int i = 0; i < sizeOf(); ++i) {
-            if (list->getAt(i) != pop()) return false;
-        }
-        return true;
-
-    }
-};
-
-
-double postfix_eval(string exp) {
-    auto list = new Stacks<double>(exp.length());
-    string temp = "";
-
-    for (auto i: exp) {
-        if (i == '-') {
-            auto a = list->pop();
-            auto b = list->pop();
-            list->push(b - a);
-            continue;
-        } else if (i == '+') {
-            auto a = list->pop();
-            auto b = list->pop();
-            list->push(a + b);
-            continue;
-        } else if (i == '*') {
-            auto a = list->pop();
-            auto b = list->pop();
-            list->push(a * b);
-            continue;
-
-        } else if (i == '/') {
-            auto a = list->pop();
-            auto b = list->pop();
-            list->push(b / a);
-            continue;
-        }
-        temp.push_back(i);
-        list->push(stod(temp));
-//        list->print();
-        temp.clear();
-
-    }
-    return list->pop();
-}
-
 
 int main() {
-//    Stacks<int> list;
-//    list.push(100);
-//    list.push(200);
-//    list.push(300);
-//    list.push(400);
-//    list.push(500);
-//    list.push(600);
-//    list.push(700);
-//    list.push(800);
-//    list.push(900);
-//
-//    cout << list.pop() << endl;
-//    cout << list.pop() << endl;
-//    cout << list.pop() << endl;
-//    cout << list.pop() << endl;
-//    cout << list.top_stack() << ' ';
-//
-//    list.print();
-//    cout << list.count();
-//    cout << list.sum() << " ";
-//    cout << "reversed stack print\n";
-//    list.reverse();
-//    Stacks<char> userStack("Bobir");
-//    userStack.reverse(true);
+    familyTree family;
+    family.manageFamily();
+    family.printFamily();
 
 
-//    LinkedListStack<char> plind("ammm1ma");
-//
-//    plind.isPalindrome() ? (cout <<  "true" ) : (cout << "false");
-
-
-//    cout << "Postfix: 82+3*64/-\nAnswer: " << postfix_eval("82+3*64/-") << endl;
-    vector<string> operations = {"1", "C"};
-//
-
-    Stacks<int> stack;
-    for (auto i: operations) {
-        if (i == "+") {
-            auto a = stack.pop();
-            auto b = stack.pop();
-            stack.push(b);
-            stack.push(a);
-            stack.push(a + b);
-            stack.print();
-            continue;
-        } else if (i == "C") {
-            stack.pop();
-            stack.print();
-            continue;
-        } else if (i == "D") {
-            stack.push(2 * stack.top_stack());
-            stack.print();
-            continue;
-        }
-        stack.push(stoi(i));
-        stack.print();
-    }
-    cout <<stack.sum() << endl;
+    family.findFamilyViaChildName("adam1");
 
 
     return 0;
-
 }
+
+/*
+
+1
+bob1
+20
+2
+jane1
+20
+3
+adam1
+1
+bob2
+20
+2
+jane2
+20
+1
+bob3
+20
+4
+
+*/

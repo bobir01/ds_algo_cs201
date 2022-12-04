@@ -1,4 +1,4 @@
-/private/var/folders/lp/6d_2c8993tndhtrv4w8_9y440000gq/T/AppTranslocation/1DD9D55B-3706-4A32-82C7-4494C346F4B5/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/210030/CLionProjects/ds_algo_cs201 -B /Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/210030/CLionProjects/ds_algo_cs201 -B /Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/210030/CLionProjects/ds_algo_cs201/cmake-build-debug
