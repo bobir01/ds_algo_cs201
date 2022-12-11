@@ -80,15 +80,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/210030/CLionProjects/ds_algo_cs201/ChildNode.h">
-			<Option target="dsAlgoLab"/>
-		</Unit>
-		<Unit filename="/Users/210030/CLionProjects/ds_algo_cs201/HusbandNode.h">
-			<Option target="dsAlgoLab"/>
-		</Unit>
-		<Unit filename="/Users/210030/CLionProjects/ds_algo_cs201/WifeNode.h">
-			<Option target="dsAlgoLab"/>
-		</Unit>
 		<Unit filename="/Users/210030/CLionProjects/ds_algo_cs201/main.cpp">
 			<Option target="dsAlgoLab"/>
 		</Unit>
