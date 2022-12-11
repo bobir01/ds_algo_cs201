@@ -226,7 +226,7 @@ void InsertionSort(LinkedList<type> &list) {
             Node *temp1 = new Node(curr->data);
             temp1->next = sorted;
             sorted = temp1;
-            curr = curr->next;
+            // curr = curr->next;
         } else {
             Node *current = sorted;
             Node *previous = NULL;
@@ -273,6 +273,10 @@ void SelectionSort(LinkedList<type> & list){
             next = next->next;
 
         }
+        if(min_node != curr){
+        	swapNodes(min_node, curr);
+        }
+        curr = curr-> next;
     }
 
 }
@@ -281,26 +285,27 @@ int main() {
 
     LinkedList<int> list;
     list.insertLast(5);
-    list.insertLast(4);
+    list.insertLast(6);
     list.insertLast(3);
     list.insertLast(2);
     list.insertLast(1);
-    list.insertLast(0);
-    list.insertLast(6);
-    list.insertLast(7);
-    list.insertLast(8);
-    list.insertLast(9);
-    list.insertLast(10);
-    list.insertLast(19);
-    list.insertLast(18);
-    list.insertLast(17);
-    list.insertLast(16);
-    list.insertLast(15);
+    list.insertLast(1);
+    // list.insertLast(6);
+    // list.insertLast(7);
+    // list.insertLast(8);
+    // list.insertLast(9);
+    // list.insertLast(10);
+    // list.insertLast(19);
+    // list.insertLast(18);
+    // list.insertLast(17);
+    // list.insertLast(16);
+    // list.insertLast(15);
 
 
     cout << list << endl;
 //    BubbleSort(list);
     InsertionSort(list);
+    // SelectionSort(list);
     cout << list << endl;
 
 
